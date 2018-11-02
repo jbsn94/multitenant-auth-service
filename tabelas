@@ -1,0 +1,12 @@
+- Tableas
+    - Users
+        - Acessos e Autorizações (usuario_id, acesso_id, autorizacao_id)
+        - Grupos (usuario_id, grupo_id)
+    - Acessos (id, nome)
+    - Autorizações (id, nome)
+    - Grupos (id, nome, acessos_autorizacoes)
+    - Clientes (id, nome, sigla, email e senha)
+
+MVP1
+    -   Users
+    -   Clientes -> O tenant do cliente
