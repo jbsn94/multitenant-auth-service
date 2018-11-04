@@ -3,23 +3,25 @@
 /** @type {import('@adonisjs/lucid/src/Schema')} */
 const Schema = use('Schema')
 
-/** @type {import('@adonisjs/framework/src/Env')} */
-const Env = use('Env')
+/** @type {typeof import('@adonisjs/framework/src/Config')} */
+const Config = use('Config')
 
 class TenantsSchema extends Schema {
   up () {
-    if(Env.get('APP_TENANT') === 'admin') {
+    if(Config.get('database.connection') === 'admin') {
       this.create('tenants', (table) => {
-        table.string('name', 255)
-        table.string('strid', 255)
         table.increments()
+        table.string('name', 255)
+        table.string('admin_email', 255).notNullable()
+        table.string('strid', 50).notNullable().unique()
+        table.boolean('active')
         table.timestamps()
       })
     }
   }
 
   down () {
-    if(Env.get('APP_TENANT') === 'admin') {
+    if(Config.get('database.connection') === 'admin') {
       this.drop('tenants')
     }
   }

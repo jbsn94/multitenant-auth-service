@@ -17,3 +17,15 @@
 const Route = use('Route')
 
 Route.on('/').render('welcome')
+
+Route.group(() => {
+    Route.resource('tenant', 'TenantController').apiOnly();
+    Route.resource('user', 'UserController').apiOnly();
+})
+.prefix('admin/api');
+
+Route.group(() => {
+    Route.resource('user', 'UserController').apiOnly();
+})
+.prefix(':clientesigla/api')
+.middleware(['dbSwitch']);
