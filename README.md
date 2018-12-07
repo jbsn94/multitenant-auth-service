@@ -1,31 +1,32 @@
-# Adonis fullstack application
+# Serviço de autenticação
 
-This is the fullstack boilerplate for AdonisJs, it comes pre-configured with.
+Este projeto é um serviço de autenticação, autorização e controle de acessos de usuários
+em uma arquitetura multi-tenancy.
 
-1. Bodyparser
-2. Session
-3. Authentication
-4. Web security middleware
-5. CORS
-6. Edge template engine
-7. Lucid ORM
-8. Migrations and seeds
+## Requisitos
+
+1. Node 8.12.0
+2. AdonisJs 4.1
+3. Banco de dados PostgreSQL
 
 ## Setup
 
-Use the adonis command to install the blueprint
+Atenção: Antes de realizar os comandos abaixo configure o arquivo **.env** como o **.env.exemple** configurando as conexões do banco bem como criando o banco de dados com o nome **admin** para serem criadas as tabelas pelas migrations e populado pelos seeds.
 
-```bash
-adonis new yardstick
-```
+1. Instalar os pacotes do NPM do projeto
+    ```bash
+    npm install
+    ```
+2. Rodar as migrations bases para o banco administrador
+    ```bash
+    adonis migration:run
+    ```
+3. Popular o banco com o dados básicos
+    ```bash
+    adonis seed
+    ```
 
-or manually clone the repo and then run `npm install`.
+### Fontes
 
-
-### Migrations
-
-Run the following command to run startup migrations.
-
-```js
-adonis migration:run
-```
+1. [AdonisJs](https://adonisjs.com/)
+2. [Node](https://nodejs.org/en/)
