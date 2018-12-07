@@ -3,9 +3,12 @@
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
+/** @typedef {import('@adonisjs/auth/src/Auth')} Auth */
 
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const User = use('App/Models/User');
+/** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
+const UserGrupo = use('App/Models/UserGrupo');
 
 const { validate } = use('Validator');
 
@@ -125,6 +128,27 @@ class UserController {
         message: 'User not found'
       });
     }
+  }
+
+  /**
+   * Delete a user with id.
+   * DELETE users/:id
+   *
+   * @param {object} ctx
+   * @param {Request} ctx.request
+   * @param {Response} ctx.response
+   * @param {Auth} ctx.auth
+   */
+  async addGroup ({ params, request, response, auth }) {
+    let user_id = params.user;
+    let grupo_id = params.grupo;
+    
+    UserGrupo.create({
+      user_id,
+      grupo_id
+    });
+
+    return await this.model.find(user_id);
   }
 }
 

@@ -21,7 +21,7 @@ class DbSwitch {
     Config.set('database.connection', 'admin');
     
     //Find tenant
-    const tenant = await Tenant.findBy('name', request.params.clientesigla);
+    const tenant = await Tenant.findBy('name', request.params.nomecliente);
     
     //Check if tenant exists
     if(tenant) {

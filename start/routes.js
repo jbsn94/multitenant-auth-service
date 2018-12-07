@@ -16,16 +16,25 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.on('/').render('welcome')
 
 Route.group(() => {
-    Route.resource('tenant', 'TenantController').apiOnly();
-    Route.resource('user', 'UserController').apiOnly();
+    Route.post('login', 'AuthController.login');
+    
+    Route.resource('tenant', 'TenantController').apiOnly().middleware(['auth']);
+    Route.resource('user', 'UserController').apiOnly().middleware(['auth']);
+    Route.resource('grupo', 'GrupoController').apiOnly().middleware(['auth']);
+    Route.resource('acesso', 'AcessoController').apiOnly().middleware(['auth']);
+    Route.resource('entidade', 'EntidadeController').apiOnly().middleware(['auth']);
 })
 .prefix('admin/api');
 
 Route.group(() => {
-    Route.resource('user', 'UserController').apiOnly();
+    Route.post('login', 'AuthController.login');
+    
+    Route.resource('user', 'UserController').apiOnly().middleware(['auth']);
+    Route.resource('grupo', 'GrupoController').apiOnly().middleware(['auth']);
+    Route.resource('acesso', 'AcessoController').apiOnly().middleware(['auth']);
+    Route.resource('entidade', 'EntidadeController').apiOnly().middleware(['auth']);
 })
-.prefix(':clientesigla/api')
+.prefix(':nomecliente/api')
 .middleware(['dbSwitch']);
